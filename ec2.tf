@@ -20,6 +20,6 @@ resource "aws_instance" "my-first-ec2" {
   instance_type = "t3.micro"
   tags = {
     Name = "myec2-1"
-    Owner = "Vakhob"
+    Owner = "Madina"
    }  
  }
