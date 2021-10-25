@@ -1,18 +1,17 @@
 pipeline {
-    agent any
-    stages {
-        stage ('Checkout') {
-            steps {
-                    git branch: 'main', url: 'git@github.com:NMadina/devops14-jenkins-public.git'
-                }
-            }
-
-        stage ('Test') {
-            steps {
-                script{
-                    sh "chmod +x -R ${env.WORKSPACE}/../${env.JOB_NAME}/pipeline.sh"
-                }
-            }
-        }
+  agent any  
+  
+  stages {
+    stage ('First') {
+      steps {
+        echo "This is my first stage!!!"
+      }
     }
+
+  stage ('Second') {
+    steps {
+      echo "This is my second stage!!!"
+    }
+   }
+  }
 }
