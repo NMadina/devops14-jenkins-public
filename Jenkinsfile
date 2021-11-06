@@ -1,17 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage ('Checkout') {
+        stage('---clean---') {
             steps {
-                    git branch: 'main', url: 'git@github.com:NMADINA/devops14-jenkins-public.git'
-                }
+                sh "mvn clean"
             }
-
-        stage ('Test') {
+        }
+        stage('--test--') {
             steps {
-                script{
-                    sh "chmod +x -R ${env.WORKSPACE}/../${env.JOB_NAME}/test.sh"
-                }
+                sh "mvn test"
+            }
+        }
+        stage('--package--') {
+            steps {
+                sh "mvn package"
             }
         }
     }
