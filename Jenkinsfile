@@ -1,20 +1,23 @@
 pipeline {
-    agent any
-    stages {
-        stage('---clean---') {
-            steps {
-                sh "mvn clean"
-            }
-        }
-        stage('--test--') {
-            steps {
-                sh "mvn test"
-            }
-        }
-        stage('--package--') {
-            steps {
-                sh "mvn package"
-            }
-        }
-    }
+   agent any
+   stages {
+      stage('make pizza') {
+         steps {
+            sh 'rm -rf mypizza'
+            sh 'mkdir mypizza'
+            sh 'touch pizza/pizza.txt'
+            sh 'echo "cheese" >> pizza/pizza.txt'
+            sh 'echo "veggie" >> pizza/pizza.txt'
+            sh 'echo "chicken" >> pizza/pizza.txt'
+         }
+      }
+      stage('Test') {
+          steps {
+              sh 'test -f pizza/pizza.txt'
+              sh 'grep "cheese" pizza/pizza.txt'
+              sh 'grep "veggie" pizza/pizza.txt'
+              sh 'grep "chicken" pizza/pizza.txt'
+          }
+      }
+   }
 }
