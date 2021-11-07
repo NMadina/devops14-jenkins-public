@@ -1,25 +1,7 @@
 pipeline {
    agent any
    stages {
-      stage('make pizza') {
-         steps {
-            sh 'rm -rf mypizza'
-            sh 'mkdir mypizza'
-            sh 'touch mypizza/pizza.txt'
-            sh 'echo "cheese" >> mypizza/pizza.txt'
-            sh 'echo "veggie" >> mypizza/pizza.txt'
-            sh 'echo "chicken" >> mypizza/pizza.txt'
-         }
-      }
-      stage('Test') {
-          steps {
-              sh 'test -f mypizza/pizza.txt'
-              sh 'grep "cheese" mypizza/pizza.txt'
-              sh 'grep "veggie" mypizza/pizza.txt'
-              sh 'grep "chicken" mypizza/pizza.txt'
-          }
-      }
-
+      s
 def remote = [:]
 remote.name = "node"
 remote.host = "prdx-ansible11"
