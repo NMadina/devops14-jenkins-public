@@ -5,18 +5,18 @@ pipeline {
          steps {
             sh 'rm -rf mypizza'
             sh 'mkdir mypizza'
-            sh 'touch pizza/pizza.txt'
-            sh 'echo "cheese" >> pizza/pizza.txt'
-            sh 'echo "veggie" >> pizza/pizza.txt'
-            sh 'echo "chicken" >> pizza/pizza.txt'
+            sh 'touch mypizza/pizza.txt'
+            sh 'echo "cheese" >> mypizza/pizza.txt'
+            sh 'echo "veggie" >> mypizza/pizza.txt'
+            sh 'echo "chicken" >> mypizza/pizza.txt'
          }
       }
       stage('Test') {
           steps {
-              sh 'test -f pizza/pizza.txt'
-              sh 'grep "cheese" pizza/pizza.txt'
-              sh 'grep "veggie" pizza/pizza.txt'
-              sh 'grep "chicken" pizza/pizza.txt'
+              sh 'test -f mypizza/pizza.txt'
+              sh 'grep "cheese" mypizza/pizza.txt'
+              sh 'grep "veggie" mypizza/pizza.txt'
+              sh 'grep "chicken" mypizza/pizza.txt'
           }
       }
       stage('SSH to ansible and run ping-pong module to all hosts') {
