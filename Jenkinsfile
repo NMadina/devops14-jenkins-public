@@ -19,5 +19,10 @@ pipeline {
               sh 'grep "chicken" pizza/pizza.txt'
           }
       }
-   }
+      stage ('SSH to ansible and run ping-pong module to all hosts') {
+         sshagent(credentials : ['jenkins-pem']) {
+            sh "echo pwd"
+            sh 'ssh -t -t ansible@prdx-ansible11 -o StrictHostKeyChecking=no "echo pwd && ansible all -m ping"'
+         }
+      }
 }
