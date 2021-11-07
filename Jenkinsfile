@@ -25,4 +25,5 @@ pipeline {
             sh 'ssh -t -t ansible@prdx-ansible11 -o StrictHostKeyChecking=no "echo pwd && ansible all -m ping"'
          }
       }
+   }
 }
