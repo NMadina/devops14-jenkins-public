@@ -19,11 +19,27 @@ pipeline {
               sh 'grep "chicken" mypizza/pizza.txt'
           }
       }
-      stage('SSH to ansible and run ping-pong module to all hosts') {
-         steps {
-            sh "echo pwd"
-            sh 'ssh -t -t ansible@prdx-ansible11 -o StrictHostKeyChecking=no "echo pwd && ansible all -m ping"'
-         }
-      }
+
+def remote = [:]
+remote.name = "node"
+remote.host = "prdx-ansible11"
+remote.allowAnyHosts = true
+
+node {
+    withCredentials([usernamePassword(credentialsId: 'sshUserAcct', passwordVariable: 'password', usernameVariable: 'userName')]) {
+        remote.user = ansible
+        remote.password = password
+
+        stage("SSH Steps Rocks!") {
+            writeFile file: 'test.sh', text: 'ls'
+            sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+            sshScript remote: remote, script: 'test.sh'
+            sshPut remote: remote, from: 'test.sh', into: '.'
+            sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
+            sshRemove remote: remote, path: 'test.sh'
+        }
+    }
+}
+      
    }
 }
