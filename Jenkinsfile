@@ -1,7 +1,7 @@
 pipeline {
    agent any
    stages {
-      s
+     
 def remote = [:]
 remote.name = "node"
 remote.host = "prdx-ansible11"
