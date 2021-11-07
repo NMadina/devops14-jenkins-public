@@ -6,7 +6,9 @@ node {
 pipeline {
    stages {
       stage('ssh and run') {
-        sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible all -m ping"'
-         }
-      }
-   }      
+        steps {
+            sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible all -m ping"'
+        }
+      }  
+    }
+}      
