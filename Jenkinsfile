@@ -16,7 +16,7 @@ pipeline {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible jenkins -m ping -i ntp_inv"'
         }
       }  
-      stage('Ping ftp server connection') {
+      stage('Check ftp') {
         steps {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible ftp -m ping -i ntp_inv"'
         }
