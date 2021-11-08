@@ -1,7 +1,7 @@
 pipeline {
    agent any
    stages {
-       stage('ping ansible') {
+       stage('ping webserver') {
          steps {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible webserver -m ping -i ntp_inv"'
          }
