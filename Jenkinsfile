@@ -1,7 +1,7 @@
 pipeline {
    agent any
    stages {
-      stage('ping ntp clients') {
+      stage('ping all ntp clients') {
         steps {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible ntpclient -m ping -i ntp_inv"'
         }
@@ -16,7 +16,7 @@ pipeline {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible jenkins -m ping -i ntp_inv"'
         }
       }  
-      stage('Check nfs') {
+      stage('Ping nfs server connection') {
         steps {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible nfs -m ping -i ntp_inv"'
         }
