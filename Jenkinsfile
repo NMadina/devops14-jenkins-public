@@ -16,9 +16,9 @@ pipeline {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible jenkins -m ping -i ntp_inv"'
         }
       }  
-      stage('Ping nfs server connection') {
+      stage('Ping ftp server connection') {
         steps {
-            sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible nfs -m ping -i ntp_inv"'
+            sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible ftp -m ping -i ntp_inv"'
         }
       }  
     }
