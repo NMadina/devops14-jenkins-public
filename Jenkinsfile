@@ -21,5 +21,5 @@ pipeline {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible nfs -m ping -i ntp_inv"'
          }
        }  
-   }
+    }
 }      
