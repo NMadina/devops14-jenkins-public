@@ -1,7 +1,13 @@
 pipeline {
    agent any
-   stages {
-      stage('ping all ntpclients') {
+   stages{
+      stage('SSH to ansible and run ping-pong module to all hosts') {
+       steps {
+           sh "echo pwd"
+           sh 'ssh -t -t ansible@prdx-ansible11 -o StrictHostKeyChecking=no "echo pwd && ansible all -m ping"'
+       }
+      }
+      stage('ping ntpserver') {
         steps {
             sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible ntpclient -m ping -i ntp_inv"'
         }
