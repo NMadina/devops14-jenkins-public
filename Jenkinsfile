@@ -3,7 +3,7 @@ pipeline {
    stages {
        stage('ping ansible') {
          steps {
-            sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible -m ping -i ntp_inv"'
+            sh 'sshpass -p \'password\' ssh ansible@prdx-ansible11 "ansible webserver -m ping -i ntp_inv"'
          }
        } 
       stage('check DB servers') {
